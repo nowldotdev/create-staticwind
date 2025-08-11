@@ -1,0 +1,26 @@
+{
+  "name": "create-staticwind",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Create a static site with Astro and Tailwind",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nowldotdev/create-staticwind.git"
+  },
+  "keywords": [
+    "create-staticwind",
+    "astro",
+    "tailwind",
+    "typescript"
+  ],
+  "exports": [
+    "./index.js"
+  ],
+  "bin": {
+    "create-staticwind": "./index.js"
+  },
+  "dependencies": {
+    "inquirer": "^12.9.1"
+  }
+}

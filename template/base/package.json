@@ -1,0 +1,20 @@
+{
+  "name": "my-staticwind-app",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "bph": "astro build && astro preview --host"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.4.2",
+    "@tailwindcss/vite": "^4.1.5",
+    "astro": "^5.12.9",
+    "astro-compress": "^2.3.8",
+    "astro-rename": "^1.1.2",
+    "tailwindcss": "^4.1.5"
+  }
+}

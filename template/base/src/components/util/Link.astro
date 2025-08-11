@@ -1,0 +1,26 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends Omit<HTMLAttributes<"a">, "target"> {
+	href: string;
+}
+
+const props = Astro.props;
+
+let outBound = false;
+
+const href = Astro.props.href;
+const hrefLead = href.charAt(0);
+if (hrefLead != "." && hrefLead != "#" && hrefLead != "/") {
+	outBound = true;
+
+	if (props.rel) props.rel = props.rel + " noopener";
+	else props.rel = "noopener";
+}
+---
+
+<a
+	{...(outBound ? { target: "_blank" } : {})}
+	{...Astro.props}>
+	<slot />
+</a>
