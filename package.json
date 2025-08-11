@@ -2,7 +2,7 @@
   "name": "create-staticwind",
   "version": "0.1.0",
   "type": "module",
-  "description": "Create a static site with Astro and Tailwind",
+  "description": "Create an optimized static site with Astro and Tailwind",
   "license": "MIT",
   "repository": {
     "type": "git",
