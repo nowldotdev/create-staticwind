@@ -2,6 +2,8 @@
 import printTitle from "./lib/title.js"
 import inquirer from "inquirer";
 
+import { PKG_ROOT } from "./constants.js";
+
 import fs from "node:fs";
 import path from "node:path";
 import { exec } from "node:child_process";
@@ -31,7 +33,7 @@ async function main() {
     }
 
     fs.mkdirSync(projPath);
-    fs.cpSync("./template/base/", projPath, {recursive: true});
+    fs.cpSync(path.join(PKG_ROOT, "template/base/"), projPath, {recursive: true});
     fs.renameSync(
         path.join(projPath, "_.gitignore"),
         path.join(projPath, ".gitignore")
