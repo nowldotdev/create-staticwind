@@ -36,6 +36,6 @@
   },
   "scripts": {
     "build": "tsc",
-    "publish": "npm run build && npm publish"
+    "npm:publish": "npm run build && npm publish"
   }
 }
