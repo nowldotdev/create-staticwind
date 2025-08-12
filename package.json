@@ -1,6 +1,6 @@
 {
   "name": "create-staticwind",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "author": "nowl",
   "type": "module",
   "description": "Create an optimized static site with Astro and Tailwind",
