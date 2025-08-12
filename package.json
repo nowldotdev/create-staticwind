@@ -17,7 +17,8 @@
     "typescript"
   ],
   "files": [
-    "dist"
+    "dist",
+    "template"
   ],
   "exports": [
     "./index.js"
