@@ -1,46 +1,18 @@
 #!/usr/bin/env node
-import printTitle from "./lib/title.js"
-import inquirer from "inquirer";
 
-import { PKG_ROOT } from "./constants.js";
+'use strict';
 
-import fs from "node:fs";
-import path from "node:path";
-import { exec } from "node:child_process";
+import { main } from "./dist/cli-index.js";
+
+const currentVersion = process.versions.node;
+const requiredMajorVersion = parseInt(currentVersion.split('.')[0], 10);
+const minimumMajorVersion = 18;
 
 
-async function main() {
-    printTitle();
-
-    const name = (await inquirer.prompt({
-        type: "input",
-        name: "name",
-        message: "What is your project name?",
-    })).name;
-    
-    const shouldInstallDeps = (await inquirer.prompt({
-        type: "confirm",
-        name: "installDeps",
-        message: "Run npm install?"
-    })).installDeps;
-
-    const projPath = path.join(process.cwd(), name);
-
-    if (fs.existsSync(projPath)) {
-        console.error("Could not create project directory. Project directory is not empty.");
-        console.log("Aborting...")
-        return;
-    }
-
-    fs.mkdirSync(projPath);
-    fs.cpSync(path.join(PKG_ROOT, "template/base/"), projPath, {recursive: true});
-    fs.renameSync(
-        path.join(projPath, "_.gitignore"),
-        path.join(projPath, ".gitignore")
-    );
-
-    if(shouldInstallDeps)
-        exec("npm install", {cwd: projPath})
+if (requiredMajorVersion < minimumMajorVersion) {
+	console.error(`Node.js v${currentVersion} is out of date and unsupported!`);
+	console.error(`Please use Node.js v${minimumMajorVersion} or higher.`);
+	process.exit(1);
 }
 
 

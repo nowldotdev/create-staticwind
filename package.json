@@ -1,9 +1,11 @@
 {
   "name": "create-staticwind",
   "version": "0.2.0",
+  "author": "nowl",
   "type": "module",
   "description": "Create an optimized static site with Astro and Tailwind",
   "license": "MIT",
+  "homepage": "https://staticwind.nowl.dev",
   "repository": {
     "type": "git",
     "url": "https://github.com/nowldotdev/create-staticwind.git"
@@ -14,13 +16,23 @@
     "tailwind",
     "typescript"
   ],
+  "files": [
+    "dist"
+  ],
   "exports": [
     "./index.js"
   ],
+  "main": "./index.js",
   "bin": {
     "create-staticwind": "./index.js"
   },
+  "engines": {
+    "node": "18.20.8 || ^20.3.0 || >=22.0.0"
+  },
   "dependencies": {
     "inquirer": "^12.9.1"
+  },
+  "scripts": {
+    "build": "tsc"
   }
 }
