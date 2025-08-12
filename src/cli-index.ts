@@ -5,8 +5,11 @@ import inquirer from "inquirer";
 
 import fs from "fs";
 import path from "path";
-import { exec } from "node:child_process";
+import { exec as _exec } from "node:child_process";
+import ora from "ora";
+import { promisify } from "node:util";
 
+const exec = promisify(_exec);
 
 export async function main() {
     printTitle();
@@ -15,6 +18,7 @@ export async function main() {
         type: "input",
         name: "name",
         message: "What is your project name?",
+        default: "my-staticwind-app"
     })).name;
     
     const shouldInstallDeps = (await inquirer.prompt({
@@ -23,13 +27,17 @@ export async function main() {
         message: "Run npm install?"
     })).installDeps;
 
+    console.log();
+
     const projPath = path.join(process.cwd(), name);
 
     if (fs.existsSync(projPath)) {
-        console.error("Could not create project directory. Project directory is not empty.");
+        console.error("Project directory is not empty.");
         console.log("Aborting...")
         return;
     }
+
+    let spinner = ora({text: "Copying template", color: "green"}).start();
 
     fs.mkdirSync(projPath);
     fs.cpSync(path.join(PKG_ROOT, "template/base/"), projPath, {recursive: true});
@@ -38,6 +46,24 @@ export async function main() {
         path.join(projPath, ".gitignore")
     );
 
-    if(shouldInstallDeps)
-        exec("npm install", {cwd: projPath})
+    const packagePath = path.join(projPath, "package.json");
+    const packageJson = fs.readFileSync(packagePath, { encoding: "utf-8" });
+    fs.writeFileSync(
+        packagePath,
+        packageJson.replaceAll("my-staticwind-app", name),
+        { encoding: "utf-8" });
+
+    spinner.succeed();
+
+    spinner = ora({text: "Installing dependencies", color: "green"}).start();
+
+    if(shouldInstallDeps) {
+        await exec("npm install", {cwd: projPath})
+            .then(() => spinner.succeed())
+            .catch(() => spinner.fail());
+    }else {
+        spinner.text += " - skipped";
+        spinner.color = "gray";
+        spinner.fail();
+    }
 }

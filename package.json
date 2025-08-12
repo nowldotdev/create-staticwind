@@ -30,7 +30,8 @@
     "node": "18.20.8 || ^20.3.0 || >=22.0.0"
   },
   "dependencies": {
-    "inquirer": "^12.9.1"
+    "inquirer": "^12.9.1",
+    "ora": "^8.2.0"
   },
   "scripts": {
     "build": "tsc",
