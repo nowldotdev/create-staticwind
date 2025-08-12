@@ -1,6 +1,6 @@
 # Create StaticWind
 
-This is an [Astro](https://astro.build) project with some small additions bootstrapped with `npm create staticwind`
+This is an [Astro](https://astro.build) project with some small additions bootstrapped with [create-staticwind](https://staticwind.nowl.dev)
 
 ## Where do I start?
 
