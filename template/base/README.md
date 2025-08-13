@@ -10,9 +10,7 @@ You can treat it just like an Astro application, so if you're familiar with Astr
 
 ### Placeholders
 
-You need to replace `https://example.com` with your site url in:
-- `public/robots.txt`
-- `astro.config.mjs`
+- replace `https://example.com` in `astro.config.mjs`.
 
 ### Some guides
 
